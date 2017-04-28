@@ -43,7 +43,7 @@ class CalculationsController < ApplicationController
 
   def square_root
     @user_provided_number = params["number_to_be_squared"].to_i
-    @square_rooted_number = @user_provided_number ** 0.5
+    @square_rooted_number = Math.sqrt(@user_provided_number).round(3)
     render("calculations/square_root.html.erb")
   end
 
