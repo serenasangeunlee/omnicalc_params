@@ -13,10 +13,10 @@ class CalculationsController < ApplicationController
   end
 
   def flex_payment
-    @basis_points = params["basis_points"].to_f.round(6)/10000
-    @number_of_years = params["number_of_years"].to_i
-    @present_value = params["present_value"].to_i
-    @monthly_payment = ((@basis_points / 100 / 12) * @present_value) / (1 - ((1 + (@basis_points / 100 / 12)) ** (-@number_of_years * 12)))
+    @apr = params["apr"].to_f.round(6)/10000
+    @year = params["year"].to_i
+    @principal = params["total_amount"].to_i
+    @monthly_payment = (@apr / 12 * @principal) / (1 - ((1 + @apr / 12 ) ** ((-1) * @year * 12)))
     render("calculations/flex_payment.html.erb")
   end
 
