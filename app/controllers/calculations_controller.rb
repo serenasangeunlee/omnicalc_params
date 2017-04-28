@@ -32,7 +32,7 @@ class CalculationsController < ApplicationController
   end
 
   def square
-    @user_provided_number = params["number_to_be_squared"].to_i
+    @user_provided_number = params["number_to_be_squared"].to_f
     @squared_number = @user_provided_number ** 2
     render("calculations/square.html.erb")
   end
