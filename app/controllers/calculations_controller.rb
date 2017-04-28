@@ -16,7 +16,7 @@ class CalculationsController < ApplicationController
     @basis_points = params["basis_points"].to_f.round(6)/10000
     @number_of_years = params["number_of_years"].to_i
     @present_value = params["present_value"].to_i
-    @monthly_payment = (@basis_points / 12 * @present_value) / (1 - ((1 + @basis_points / 12 ) ** ((-1) * @number_of_years * 12)))
+    @monthly_payment = ((@basis_points / 100 / 12) * @present_value) / (1 - ((1 + (@basis_points / 100 / 12)) ** (-@number_of_years * 12)))
     render("calculations/flex_payment.html.erb")
   end
 
@@ -32,7 +32,6 @@ class CalculationsController < ApplicationController
   end
 
   def square
-    # params = ["number_to_be_squared"=>"42"]
     @user_provided_number = params["number_to_be_squared"].to_i
     @squared_number = @user_provided_number ** 2
     render("calculations/square.html.erb")
@@ -53,10 +52,10 @@ class CalculationsController < ApplicationController
   end
 
   def payment
-    @basis_points = params["basis_points"].to_f
-    @number_of_years = params["number_of_years"].to_i
-    @present_value = params["present_value"].to_i
-    @monthly_payment = ((@basis_points / 100 / 12) * @present_value) / (1 - ((1 + (@basis_points / 100 / 12)) ** (-@number_of_years * 12)))
+    @apr = params["apr"].to_f.round(6)/100
+    @year = params["years"].to_i
+    @principal = params["principal"].to_i
+    @monthly_payment = (@apr / 12 * @principal) / (1 - ((1 + @apr / 12 ) ** ((-1) * @year * 12)))
     render("calculations/payment.html.erb")
   end
 
@@ -67,7 +66,7 @@ class CalculationsController < ApplicationController
   def random
     @user_provided_min = params["min"].to_i
     @user_provided_max = params["max"].to_i
-    @random_number = my_rand(@user_provided_max, @user_provided_min)
+    @random_number = (@user_provided_min + rand(@user_provided_max-@user_provided_min+1)).to_i
     render("calculations/random.html.erb")
   end
 

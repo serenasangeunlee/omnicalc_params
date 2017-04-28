@@ -1,6 +1,19 @@
 <h1> Payment Results </h1>
 
-<li> APR <%= @basis_points %> </li>
-<li> Number of years <%= @number_of_years %> </li>
-<li> Principal <%= @present_value %> </li>
-<li> Payment <%= @monthly_payment %> </li>
+<dl>
+<dt> APR </dt>
+<%= @apr.round(2) %>%
+
+<dt> Number of years </dt>
+<%= @year %>
+
+<dt> Principal </dt>
+<%= @principal %>
+
+<dt> Payment </dt>
+<%=number_to_currency(@monthly_payment,precision: 2) %>
+</dl>
+
+<a href="/payment/new">
+  Calculate another payment
+</a>

@@ -2,18 +2,22 @@
 
 <form action="http://localhost:3000/payment/results">
   <div>
-    <li><label>
-      APR
-    </label>
-    <input type="text" name="basis_points"></li>
-    <li><label>
-      Number of years
-    </label>
-    <input type="text" name="number_of_years"></li>
-    <li><label>
-      Principal
-    </label>
-    <input type="text" name="present_value"></li>
-    </div>
-    <button>Calculate monthly payment</button>
+  <label for="users_apr">
+    APR
+  </label>
+  <input id="users_apr" placeholder="E.g.5.42" type = "text" name="apr">
+  </div>
+  <div>
+  <label for="users_year">
+    Number of years
+  </label>
+  <input id="users_year" placeholder="How many years to repay" type = "text" name="years">
+  </div>
+  <div>
+  <label for="Principal">
+    Principal
+  </label>
+  <input id="Principal" placeholder="How much principal" type ="text" name="principal">
+  </div>
+  <button>Calculate monthly payment</button>
 </form>
