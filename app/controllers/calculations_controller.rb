@@ -93,6 +93,27 @@ class CalculationsController < ApplicationController
   end
 
   def descriptive_strats
+    @numbers = params["list_of_numbers"].gsub(",", "").split.map(&:to_f)
+    @sorted_numbers = @numbers.sort
+    @count = @numbers.count
+    @minimum = @numbers.min
+    @maximum = @numbers.max
+    @range = @maximum - @minimum
+    @list = @sorted_numbers.length
+    if @list %2 != 0
+      @median = @sorted_numbers[@list/2]
+    else
+      @median = (@sorted_numbers[@list/2] + @sorted_numbers[(@list/2)-1])/2.0
+    end
+    @sum = @numbers.sum
+    @mean = @sum / @count
+    @variance = 0
+    @numbers.each do |x|
+      @variance = @variance + ((x-@mean)**2)/@count
+    end
+    @standard_deviation = Math.sqrt(@variance)
+    @freq = @numbers.inject(Hash.new(0)) {|h,v| h[v] += 1; h}
+    @mode=@numbers.max_by { |v| @freq[v]}
     render("calculations/descriptive_strats.html.erb")
   end
 
