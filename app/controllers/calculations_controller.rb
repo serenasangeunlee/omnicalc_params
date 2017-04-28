@@ -7,8 +7,8 @@ class CalculationsController < ApplicationController
   end
 
   def flex_square_root
-    @user_provided_number = params["the_number"].to_i
-    @square_rooted_number = @user_provided_number ** 0.5
+    @user_provided_number = params["the_number"].to_f
+    @square_rooted_number = Math.sqrt(@user_provided_number).round(2)
     render("calculations/flex_square_root.html.erb")
   end
 
