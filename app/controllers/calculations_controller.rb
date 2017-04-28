@@ -20,13 +20,10 @@ class CalculationsController < ApplicationController
     render("calculations/flex_payment.html.erb")
   end
 
-  def my_rand(x, y); rand(y-x) + x;
-  end
-
   def flex_random
     @user_provided_min = params["min"].to_i
     @user_provided_max = params["max"].to_i
-    @random_number = my_rand(@user_provided_max, @user_provided_min)
+    @random_number = (@user_provided_min + rand(@user_provided_max-@user_provided_min+1)).to_i
     render("calculations/flex_random.html.erb")
   end
 
