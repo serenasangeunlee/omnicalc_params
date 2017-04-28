@@ -1,15 +1,18 @@
-<h1> Random Calculation </h1>
+<h1>Random Calculation </h1>
 
-<form action="http://localhost:3000/random/results">
+<form action ="http://localhost:3000/random/results">
   <div>
-  <li><label>
+  <label for="users_min">
     Minimum
   </label>
-  <input type="text" name="min"></li>
-  <li><label>
+  <input id="users_min" placeholder="E.g.1.5" type = "text" name="min">
+  </div>
+
+  <div>
+  <label for="users_max">
     Maximum
   </label>
-  <input type="text" name="max"></li>
+  <input id="users_max" placeholder="E.g.4.5" type = "text" name="max">
   </div>
   <button>Pick random number</button>
 </form>
